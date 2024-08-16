@@ -8,7 +8,7 @@ class Career(models.Model):
     def __str__(self):
         return self.title
 
-    title = models.CharField(max_length=15)
+    title = models.CharField(max_length=24)
     description = models.TextField()
     reference = models.URLField(max_length=200)
 
