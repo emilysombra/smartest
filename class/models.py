@@ -3,7 +3,7 @@ from django.db import models
 
 class Class(models.Model):
     class Meta:
-        db_table = 'careers'
+        db_table = 'classes'
 
     def __str__(self):
         return self.title
