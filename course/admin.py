@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from .models import Class
+from .models import Course
 
 
-class ClassAdmin(admin.ModelAdmin):
+class CourseAdmin(admin.ModelAdmin):
     list_display = ['title', 'reference']
     ordering = ['title']
 
 
-admin.site.register(Class, ClassAdmin)
+admin.site.register(Course, CourseAdmin)

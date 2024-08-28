@@ -1,9 +1,9 @@
 from django.db import models
 
 
-class Class(models.Model):
+class Course(models.Model):
     class Meta:
-        db_table = 'classes'
+        db_table = 'courses'
 
     def __str__(self):
         return self.title
