@@ -5,4 +5,4 @@ from .models import Career
 class CareerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Career
-        fields = ('title', 'description', 'reference')
+        fields = ('id', 'title', 'description', 'reference')
