@@ -1,4 +1,4 @@
-import django_filters
+from django_filters import rest_framework as filters
 
-class MessageFilter(django_filters.FilterSet):
+class MessageFilter(filters.FilterSet):
     pass
