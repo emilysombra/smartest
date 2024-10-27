@@ -1,4 +1,8 @@
 from django_filters import rest_framework as filters
+from .models import Message
+
 
 class MessageFilter(filters.FilterSet):
-    pass
+    class Meta:
+        model = Message
+        fields = ['receiver', 'sender']
