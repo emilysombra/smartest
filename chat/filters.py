@@ -11,4 +11,4 @@ class MessageFilter(filters.FilterSet):
         fields = ['receiver', 'sender']
     
     def filter_user(self, qs, name, value):
-        return qs.filter(Q(receiver=value) | Q(sender=value))[:50]
+        return qs.filter(Q(receiver=value) | Q(sender=value))

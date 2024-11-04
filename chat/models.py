@@ -4,7 +4,7 @@ class Message(models.Model):
     class Meta:
         db_table = 'messages'
         get_latest_by = "created_at"
-        ordering = ["-created_at"]
+        ordering = ["created_at"]
 
     content = models.TextField()
     sender = models.UUIDField()
