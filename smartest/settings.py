@@ -148,5 +148,5 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=6)
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=365)
 }
