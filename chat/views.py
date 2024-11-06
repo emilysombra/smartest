@@ -5,6 +5,7 @@ from uuid import UUID
 from .models import Message
 from .serializers import CreateMessageSerializer, MessageSerializer
 from .filters import MessageFilter
+from .chatbot import ChatBot
 
 
 class MessageViewSet(mixins.CreateModelMixin,
@@ -14,6 +15,7 @@ class MessageViewSet(mixins.CreateModelMixin,
     filter_backends = (filters.DjangoFilterBackend,)
     serializer_class = MessageSerializer
     filterset_class = MessageFilter
+    bot = ChatBot()
     
     def get_serializer_class(self):
         if self.action == 'create':
@@ -22,7 +24,7 @@ class MessageViewSet(mixins.CreateModelMixin,
         return MessageSerializer
 
     def new_bot_message(self):
-        # ('content', 'receiver', 'sender')
+        self.bot.get_response("como você está?")
         data = {'receiver': UUID('3352f124-ea31-4c99-b9d1-111d97e4d892'),
                 'sender': UUID('e7d81ea5-d89c-40b3-9cd3-3ed8fb6c53d5'),
                 'content': 'generated message'}
