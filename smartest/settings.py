@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'career',
     'chat',
     'course',
-    'auth',
+    'custom_auth',
 ]
 
 MIDDLEWARE = [
