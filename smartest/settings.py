@@ -7,14 +7,9 @@ from pathlib import Path
 import mimetypes
 mimetypes.add_type("text/css", ".css", True)
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('ENVIRONMENT') == 'production'
 
 ALLOWED_HOSTS = ["smartest.up.railway.app",
                  "smartest-kolm.onrender.com",
@@ -26,8 +21,6 @@ CSRF_TRUSTED_ORGINS = ["https://smartest.up.railway.app"]
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
 ]
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
