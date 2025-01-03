@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 
 from datetime import timedelta
 from pathlib import Path
@@ -12,10 +13,16 @@ SECRET_KEY = 'django-insecure-u@pt3u%gr&)6q7*p_a-_$x&idne=w^2a@s91z2*tm+7q%xf$*0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["smartest-kolm.onrender.com",
+ALLOWED_HOSTS = ["smartest.up.railway.app",
+                 "smartest-kolm.onrender.com",
                  "localhost",
                  "127.0.0.1"]
 
+CSRF_TRUSTED_ORGINS = ["https://smartest.up.railway.app"]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
 
 # Application definition
 
@@ -67,22 +74,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'smartest.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
-    },
-    'not_default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 # Password validation
@@ -132,10 +129,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-]
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=365)
