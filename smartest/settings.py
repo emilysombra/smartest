@@ -12,11 +12,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('ENVIRONMENT') == 'production'
 
 ALLOWED_HOSTS = ["smartest.up.railway.app",
-                 "smartest-kolm.onrender.com",
                  "localhost",
                  "127.0.0.1"]
 
-CSRF_TRUSTED_ORGINS = ["https://smartest.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://smartest.up.railway.app"]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
