@@ -19,6 +19,7 @@ CSRF_TRUSTED_ORIGINS = ["https://smartest.up.railway.app"]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'https://chatsmartest.netlify.app'
 ]
 
 INSTALLED_APPS = [
