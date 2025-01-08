@@ -1,4 +1,5 @@
 from rest_framework import viewsets, mixins, status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
 from uuid import UUID
@@ -22,6 +23,11 @@ class MessageViewSet(mixins.CreateModelMixin,
             return CreateMessageSerializer
 
         return MessageSerializer
+    
+    def get_permissions(self):
+        if self.action == 'create':
+            return [IsAuthenticated(), ]
+        return [permission() for permission in self.permission_classes]
 
     def new_bot_message(self):
         self.bot.get_response("como você está?")
