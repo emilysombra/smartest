@@ -29,9 +29,9 @@ class MessageViewSet(mixins.CreateModelMixin,
             return [IsAuthenticated(), ]
         return [permission() for permission in self.permission_classes]
 
-    def new_bot_message(self):
-        self.bot.get_response("como você está?")
-        data = {'receiver': UUID('3352f124-ea31-4c99-b9d1-111d97e4d892'),
+    def new_bot_message(self, receiver):
+        # self.bot.get_response("como você está?")
+        data = {'receiver': UUID(receiver),
                 'sender': UUID('e7d81ea5-d89c-40b3-9cd3-3ed8fb6c53d5'),
                 'content': 'generated message'}
         serializer = self.get_serializer(data=data)
@@ -43,6 +43,6 @@ class MessageViewSet(mixins.CreateModelMixin,
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        new_serializer = self.new_bot_message()
+        new_serializer = self.new_bot_message(request.data['sender'])
         headers = self.get_success_headers(new_serializer.data)
         return Response(new_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
