@@ -13,7 +13,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    username = serializers.UUIDField()
+    username = serializers.CharField(required=True, min_length=8, max_length=64)
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
 
     class Meta:
