@@ -30,3 +30,4 @@ class ChatBot:
             return response.choices[0].message.content
         except Exception as e:
             print(e)
+            return 'Error getting response: ' + e

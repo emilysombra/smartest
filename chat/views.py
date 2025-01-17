@@ -16,7 +16,6 @@ class MessageViewSet(mixins.CreateModelMixin,
     filter_backends = (filters.DjangoFilterBackend,)
     serializer_class = MessageSerializer
     filterset_class = MessageFilter
-    bot = ChatBot()
     
     def get_serializer_class(self):
         if self.action == 'create':
@@ -30,9 +29,10 @@ class MessageViewSet(mixins.CreateModelMixin,
         return [permission() for permission in self.permission_classes]
 
     def new_bot_message(self, receiver, content):
+        bot = ChatBot()
         data = {'receiver': UUID(receiver),
                 'sender': UUID('e7d81ea5-d89c-40b3-9cd3-3ed8fb6c53d5'),
-                'content': self.bot.get_response(content)}
+                'content': bot.get_response(content)}
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
