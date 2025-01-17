@@ -30,10 +30,9 @@ class MessageViewSet(mixins.CreateModelMixin,
         return [permission() for permission in self.permission_classes]
 
     def new_bot_message(self, receiver, content):
-        # content = self.bot.get_response(content)
         data = {'receiver': UUID(receiver),
                 'sender': UUID('e7d81ea5-d89c-40b3-9cd3-3ed8fb6c53d5'),
-                'content': content}
+                'content': self.bot.get_response(content)}
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
