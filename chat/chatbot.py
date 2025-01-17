@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 base_messages = [
-    {'role': 'system', 'content': 'Você é um assistente prestativo'}
+    {'role': 'system', 'content': 'Você é um assistente prestativo, especializado em Engenharia de Software.'}
 ]
 
 
@@ -19,10 +19,10 @@ class ChatBot:
 
     def get_response(self, input):
         try:
-            self.add_messages(input)
+            # self.add_messages(input)
             response = openai.chat.completions.create(
                 model='sabia-3',
-                messages=self.messages,
+                messages=base_messages.append({'role': 'user', 'content': input}),
                 max_tokens=1500
             )
             print(response)
