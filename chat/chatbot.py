@@ -3,30 +3,26 @@ from dotenv import load_dotenv
 import os
 
 base_messages = [
-    {'role': 'system', 'content': 'Você é um assistente prestativo, especializado em Engenharia de Software.'}
+    {'role': 'system', 'content': 'Você é um assistente prestativo, especializado em Engenharia de Software e Testes de Software.'}
 ]
 
 
 class ChatBot:
     def __init__(self):
-        load_dotenv()
-        openai.api_key = os.getenv('OPENAI_API_KEY')
-        openai.base_url = 'https://chat.maritaca.ai/api'
-        self.messages = base_messages
-    
-    def add_messages(self, msg, sender='user'):
-        self.messages.append({'role': sender, 'content': msg})
+        pass
 
     def get_response(self, input):
         try:
-            # self.add_messages(input)
-            response = openai.chat.completions.create(
+            load_dotenv()
+            client = openai.OpenAI(
+                api_key = os.getenv('OPENAI_API_KEY'),
+                base_url = 'https://chat.maritaca.ai/api',
+            )
+            response = client.chat.completions.create(
                 model='sabia-3',
                 messages=base_messages.append({'role': 'user', 'content': input}),
-                max_tokens=1500
+                max_tokens=2000
             )
-            print(response)
-            self.add_messages(response.choices[0].message.content)
             return response.choices[0].message.content
         except Exception as e:
             print(e)

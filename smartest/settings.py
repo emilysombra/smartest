@@ -9,7 +9,7 @@ mimetypes.add_type("text/css", ".css", True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('ENVIRONMENT') == 'production'
+DEBUG = os.getenv('ENVIRONMENT') != 'production'
 
 ALLOWED_HOSTS = ["smartest.up.railway.app",
                  "localhost",
