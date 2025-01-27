@@ -22,9 +22,9 @@ class ChatBot:
             response = client.chat.completions.create(
                 model='sabia-3',
                 messages=messages,
-                max_tokens=2000
+                max_tokens=2200
             )
             return response.choices[0].message.content
         except Exception as e:
             print(e)
-            return 'Error getting response: ' + str(e)
+            return 'Desculpe, ocorreu um erro internoe não pude obter uma resposta.'

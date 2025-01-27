@@ -16,7 +16,10 @@ class MessageViewSet(mixins.CreateModelMixin,
     filter_backends = (filters.DjangoFilterBackend,)
     serializer_class = MessageSerializer
     filterset_class = MessageFilter
-    
+    '''Viewset for messages. This allows user to list and create messages.
+    Some default viewsets from Django Rest Framework are overwritten to
+    better deal with specific cases
+    '''
     def get_serializer_class(self):
         if self.action == 'create':
             return CreateMessageSerializer
@@ -29,6 +32,9 @@ class MessageViewSet(mixins.CreateModelMixin,
         return [permission() for permission in self.permission_classes]
 
     def new_bot_message(self, receiver, content):
+        '''This function creates a new message from the chatbot, responding
+        a string (that will likel come from the user).
+        '''
         bot = ChatBot()
         data = {'receiver': UUID(receiver),
                 'sender': UUID('e7d81ea5-d89c-40b3-9cd3-3ed8fb6c53d5'),
@@ -42,6 +48,7 @@ class MessageViewSet(mixins.CreateModelMixin,
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+        # every time a user sends a message, they will receive a answer from the bot
         new_serializer = self.new_bot_message(request.data['sender'], request.data['content'])
         headers = self.get_success_headers(new_serializer.data)
         return Response(new_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
