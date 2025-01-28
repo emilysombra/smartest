@@ -10,7 +10,7 @@ class ChatBot:
     def get_response(self, input):
         messages = [
             {'role': 'system',
-             'content': 'Você é um assistente prestativo, especializado em Testes de Software. Se possível, adicione exemplos nas suas respostas.'},
+             'content': 'Você é um assistente prestativo, especializado em Testes de Software. Quando necessário, adicione exemplos nas suas respostas.'},
             {'role': 'user',
              'content': input}
         ]
