@@ -1,9 +1,10 @@
-from django.test import TestCase
+from django.test import Client, TestCase
 from .models import Course
 
 
 class CourseTestCase(TestCase):
     def setUp(self):
+        self.client = Client()
         Course.objects.create(title='Test',
                               description='testing',
                               reference='www.google.com')
