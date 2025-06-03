@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'chat',
     'course',
     'custom_auth',
+    # 'django_nose',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,11 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=365)
 }
+
+# Use nose to run all tests
+# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# NOSE_ARGS = [
+#     '--with-coverage',
+#     '--cover-package=career,course',
+# ]

@@ -13,6 +13,7 @@ class CourseTestCase(TestCase):
         test_course = Course.objects.get(title='Test')
         self.assertEqual(test_course.description, 'testing')
         self.assertEqual(test_course.reference, 'www.google.com')
+        self.assertEqual(str(test_course), 'Test')
     
     def test_get_courses_list(self):
         # testing list

@@ -13,6 +13,7 @@ class CareerTestCase(TestCase):
         test_career = Career.objects.get(title='Test Career')
         self.assertEqual(test_career.description, 'testing')
         self.assertEqual(test_career.reference, 'www.youtube.com')
+        self.assertEqual(str(test_career), 'Test Career')
     
     def test_get_careers_list(self):
         # testing list
